@@ -1,0 +1,20 @@
+
+
+spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+
+  thymeleaf:
+    cache: false
+#  messages:
+#    basename: i18n/**
+#    fallback-to-system-locale: false
+#    encoding: UTF-8
+#    use-code-as-default-message: true
+
+
+server:
+  servlet:
+    context-path: /GUY
