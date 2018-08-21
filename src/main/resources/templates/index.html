@@ -5,6 +5,12 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 >
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. "/>
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,"/>
     <meta charset="UTF-8">
     <title>Spring Security Example</title>
     <link rel="stylesheet" type="text/css" th:href="@{styles/bootstrap.min.css}"/>
@@ -16,7 +22,17 @@
     <h1>Welcome!</h1>
     <!--<p th:text="#{fullName}"></p>-->
     <h1 th:text="${session.fullName}"></h1>
+    <label class="custom-control-label">Date</label>
+    <input class="form-control border-primary col-sm-12 col-xl-12 col-md-12" type="text" id="calendar"/>
 </div>
 <div th:include="fragments/footer"></div>
+
+    <script type="text/javascript">
+        $('#calendar').flatpickr({
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+    </script>
 </body>
 </html>

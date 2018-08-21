@@ -59,14 +59,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Override
-    public UserDetailsService userDetailsService(){
-        UserDetails userDetails =
-                User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }
-    @Bean
     public SessionRegistry sessionRegistry() {
         SessionRegistry sessionRegistry = new SessionRegistryImpl();
         return sessionRegistry;
