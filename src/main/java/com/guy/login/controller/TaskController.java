@@ -58,7 +58,7 @@ public class TaskController {
         headers.add("Content-Type","application/json; charset=utf-8");
         Map<String,String> mapResponse = new HashMap<>();
         try {
-            return new ResponseEntity<>(new JSONSerializer().serialize(taskService.findAll()),headers, HttpStatus.OK);
+            return new ResponseEntity<>(new JSONSerializer().prettyPrint(true).exclude("*.class").serialize(taskService.findAll()),headers, HttpStatus.OK);
         }catch (Exception e){
             LOGGER.error("{}",e.getMessage());
             mapResponse.put("status","error");
