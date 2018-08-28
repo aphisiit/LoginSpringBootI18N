@@ -13,17 +13,17 @@
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,"/>
     <meta charset="UTF-8">
     <title>Spring Security Example</title>
-    <link rel="stylesheet" type="text/css" th:href="@{styles/bootstrap.min.css}"/>
+
 </head>
 <body>
 <div th:include="fragments/header"></div>
 <div class="container">
     <div th:include="lov/customerInput"></div>
-    <h1>Welcome!</h1>
+    <h1>Welcome !</h1>
     <!--<p th:text="#{fullName}"></p>-->
     <h1 th:text="${session.fullName}"></h1>
     <label class="custom-control-label">Date</label>
-    <input class="form-control border-primary col-sm-12 col-xl-12 col-md-12" type="text" id="calendar"/>
+    <input class="form-control border-primary col-sm-4 col-md-4" type="text" id="calendar"/>
 </div>
 <div th:include="fragments/footer"></div>
 
