@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.guy</groupId>
-    <artifactId>login</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>LOGIN</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>login</name>
@@ -83,6 +83,7 @@
     </dependencies>
 
     <build>
+        <finalName>LOGIN</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

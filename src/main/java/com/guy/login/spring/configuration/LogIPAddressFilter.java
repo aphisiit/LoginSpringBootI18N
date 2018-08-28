@@ -21,7 +21,7 @@ public class LogIPAddressFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         ThreadContext.put(KEY, request.getRemoteAddr());
-        LOGGER.info("{} : {}",KEY,request.getRemoteAddr());
+//        LOGGER.info("{} : {}",KEY,request.getRemoteAddr());
         chain.doFilter(request, response);
         ThreadContext.clearAll();
 

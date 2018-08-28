@@ -1,18 +1,19 @@
-
+project.base-dir : file:///C:/Users/SSG/IdeaProjects/LoginSpringBootI18N
 
 spring:
   h2:
     console:
       path: /h2-console
       enabled: true
-
   thymeleaf:
     cache: false
-#  messages:
-#    basename: i18n/**
-#    fallback-to-system-locale: false
-#    encoding: UTF-8
-#    use-code-as-default-message: true
+#    prefix: ${project.base-dir}/src/main/resources/templates/
+#  resources:
+#    static-locations: ${project.base-dir}/src/main/resources/static/
+
+  data:
+    rest:
+      default-media-type: application/json
 
 
 server:
