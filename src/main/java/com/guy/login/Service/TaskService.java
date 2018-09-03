@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface TaskService {
     void saveTask(Task task);
+    Task findOneById(Long id);
     List<Task> findAll();
 }
