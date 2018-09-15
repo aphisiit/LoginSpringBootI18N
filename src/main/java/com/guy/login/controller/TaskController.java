@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -66,4 +67,17 @@ public class TaskController {
         }
     }
 
+    @GetMapping("/findByTitle")
+    public ResponseEntity<String> findByTitle(@RequestParam("title") String title){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type","application/json; charset=UTF-8;");
+        Map<String,String> mapResponse = new HashMap<>();
+        try{
+            return new ResponseEntity<>(new JSONSerializer().prettyPrint(true).exclude("*.class").serialize(taskService.findCustomByTitle(title)),headers, HttpStatus.OK);
+        }catch (Exception e){
+            LOGGER.error(e.getMessage());
+            mapResponse.put("status","error");
+            return new ResponseEntity<>(new JSONSerializer().serialize(mapResponse),headers, HttpStatus.OK);
+        }
+    }
 }

@@ -8,4 +8,5 @@ public interface TaskService {
     void saveTask(Task task);
     Task findOneById(Long id);
     List<Task> findAll();
+    List<Task> findCustomByTitle(String title);
 }
