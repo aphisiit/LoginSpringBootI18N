@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<div th:include="fragments/header"></div>
+<header th:replace="fragments/header"></header>
 <div class="container">
     <div th:include="lov/customerInput"></div>
     <h1>Welcome !</h1>
@@ -25,7 +25,7 @@
     <label class="custom-control-label">Date</label>
     <input class="form-control border-primary col-sm-4 col-md-4" type="text" id="calendar"/>
 </div>
-<div th:include="fragments/footer"></div>
+<div th:replace="fragments/footer"></div>
 
     <script type="text/javascript">
         $('#calendar').flatpickr({

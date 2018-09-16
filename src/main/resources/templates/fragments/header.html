@@ -24,9 +24,12 @@
         /*<![CDATA[*/
 
             var session = {};            
-            session.fullName = /*[[${session.fullName}]]*/ 'default',
-            session.userName = /*[[${session.userName}]]*/ 'default',
-            session.locale_lang = /*[[${locale_lang}]]*/ 'default'        
+            session.fullName = /*[[${session.fullName}]]*/ 'default';
+            session.userName = /*[[${session.userName}]]*/ 'default';
+            session.locale_lang = /*[[${locale_lang}]]*/ 'default';
+            session.context = /*[[${#servletContext.getContextPath()}]]*/ 'default';
+            session.getLang = /*[[${#httpServletRequest.getAttribute('locale_lang')}]]*/ 'default';
+
             console.log(session);
 
         /*]]>*/
@@ -43,10 +46,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="${#servletContext.getContextPath()}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" th:with="contextPath=${#servletContext.getContextPath()}" th:href="${contextPath}+ '/task/createTask'" th:text="#{label_task}"></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,7 +70,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit">Search</button>
         </form>
-        <button class="btn btn-outline-primary mr-sm-2" type="button" th:text="#{button_language}" onclick="changeLang()"></button>
+        <a class="btn btn-outline-primary mr-sm-2" th:text="#{button_language}" th:href="${#httpServletRequest.getAttribute('locale_lang')} == 'th' ? ${#servletContext.getContextPath()}+ '?lang=en' : ${#servletContext.getContextPath()} + '?lang=th'"></a>
         <form th:action="@{/logout}" method="post">
             <button class="btn btn-outline-danger mr-sm-2" type="submit" th:text="#{button_logout}"></button>
         </form>
@@ -75,31 +78,29 @@
 </nav>
 
 <script th:inline="javascript">
-    function changeLang(){
-        if(session.locale_lang !== 'th'){
-            if(location.href.charAt(location.href.length - 1) === '/'){
-                location.href = location.href + '?lang=th';
-            }else{
-                if(location.href.indexOf('lang=en')){
-                    location.href = location.href.replace('lang=en','lang=th');
-                }else{
-                    location.href = location.href + '&lang=th';
-                }
-            }
-        }else{
-            if(location.href.charAt(location.href.length - 1) === '/'){
-                location.href = location.href + '?lang=en';
-            }else{
-                if(location.href.indexOf('lang=th')){
-                    location.href = location.href.replace('lang=th','lang=en');
-                }else{
-                    location.href = location.href + '&lang=en';
-                }
-            }
-        }
-
-
-    }
+    // function changeLang(){
+    //     if(session.locale_lang !== 'th'){
+    //         if(location.href.charAt(location.href.length - 1) === '/'){
+    //             location.href = location.href + '?lang=th';
+    //         }else{
+    //             if(location.href.indexOf('lang=en')){
+    //                 location.href = location.href.replace('lang=en','lang=th');
+    //             }else{
+    //                 location.href = location.href + '&lang=th';
+    //             }
+    //         }
+    //     }else{
+    //         if(location.href.charAt(location.href.length - 1) === '/'){
+    //             location.href = location.href + '?lang=en';
+    //         }else{
+    //             if(location.href.indexOf('lang=th')){
+    //                 location.href = location.href.replace('lang=th','lang=en');
+    //             }else{
+    //                 location.href = location.href + '&lang=en';
+    //             }
+    //         }
+    //     }
+    // }
 </script>
 
 </body>
