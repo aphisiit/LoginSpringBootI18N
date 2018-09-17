@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +37,16 @@ public class TaskRepository_Custom {
             // Create CriteriaQuery
             CriteriaQuery<Task> criteriaQuery = builder.createQuery(Task.class);
             Root<Task> taskRoot = criteriaQuery.from(Task.class);
-            criteriaQuery.select(taskRoot);
+            List<Predicate> predicateList = new ArrayList<>();
 
             if(!StringUtils.isEmpty(title)){
-                criteriaQuery.where(builder.like(builder.lower(taskRoot.get("title")),"%" + title + "%"));
+                predicateList.add(builder.like(builder.lower(taskRoot.get("title")),"%" + title + "%"));
+//                criteriaQuery.where(builder.like(builder.lower(taskRoot.get("title")),"%" + title + "%"));
 //                criteria.add(Restrictions.like("title",title, MatchMode.ANYWHERE));
             }
+
+//            criteriaQuery.select(taskRoot);
+            criteriaQuery.select(taskRoot).where(predicateList.toArray(new Predicate[]{}));
 
 //            taskList = criteria.list();
             taskList = entityManager.createQuery(criteriaQuery).getResultList();
