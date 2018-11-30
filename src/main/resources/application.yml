@@ -15,6 +15,21 @@ spring:
     rest:
       default-media-type: application/json
 
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=LOGIN
+    username: adminewf
+    password: P@ssw0rd
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+
 
 server:
   servlet:

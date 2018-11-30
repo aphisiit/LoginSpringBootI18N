@@ -1,8 +1,8 @@
 package com.guy.login.Service;
 
-import com.guy.login.domain.User;
+import com.guy.login.domain.AppUser;
 
 public interface UserService {
-    User findUserByEmail(String email);
-    void saveUser(User user);
+    AppUser findUserByEmail(String email);
+    void saveUser(AppUser user);
 }

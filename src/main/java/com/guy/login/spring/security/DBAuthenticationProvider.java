@@ -1,8 +1,8 @@
 package com.guy.login.spring.security;
 
 import com.google.gson.*;
-import com.guy.login.domain.User;
-import com.guy.login.repository.UserRepository;
+import com.guy.login.domain.AppUser;
+import com.guy.login.repository.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.Date;
 public class DBAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserRepository userRepository;
+    private AppUserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -55,7 +55,7 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
 
     private boolean checkAuthentication(String userName, String rawPassword) {
         try {
-            User user = userRepository.findByEmail(userName);
+            AppUser user = userRepository.findByEmail(userName);
             if(null == user){
                 return false;
             }else{

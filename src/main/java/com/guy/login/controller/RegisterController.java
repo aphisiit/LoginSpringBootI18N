@@ -1,7 +1,7 @@
 package com.guy.login.controller;
 
 import com.guy.login.Service.UserService;
-import com.guy.login.domain.User;
+import com.guy.login.domain.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,16 +20,16 @@ public class RegisterController {
     @GetMapping("/registration")
     public ModelAndView registrationPage(){
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
+        AppUser user = new AppUser();
         modelAndView.addObject("user", user);
         modelAndView.setViewName("registration");
         return modelAndView;
     }
 
     @PostMapping(value = "/registration")
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView createNewUser(@Valid AppUser user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        User userExists = userService.findUserByEmail(user.getEmail());
+        AppUser userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
@@ -40,7 +40,7 @@ public class RegisterController {
         } else {
             userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
+            modelAndView.addObject("user", new AppUser());
             modelAndView.setViewName("registration");
 
         }

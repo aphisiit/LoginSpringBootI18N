@@ -1,8 +1,8 @@
 package com.guy.login.controller;
 
 import com.guy.login.Service.TaskService;
-import com.guy.login.domain.Task;
-import com.guy.login.domain.User;
+import com.guy.login.domain.TaskUser;
+import com.guy.login.domain.AppUser;
 import flexjson.JSONSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +33,12 @@ public class TaskController {
 
     @GetMapping("/createTask")
     public String creatTask(Model model){
-        model.addAttribute("task", new Task());
+        model.addAttribute("task", new TaskUser());
         return "task/createTask";
     }
 
     @PostMapping("/saveTask")
-    public ResponseEntity<String> saveTask(@Valid Task task, BindingResult bindingResult){
+    public ResponseEntity<String> saveTask(@Valid TaskUser task, BindingResult bindingResult){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type","application/json; charset=utf-8");
         Map<String,String> mapResponse = new HashMap<>();

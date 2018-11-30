@@ -10,10 +10,10 @@ import java.util.Set;
 
 @Entity
 @Data
-public class User {
+public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     @NotEmpty(message = "*Please provide an email")
@@ -29,9 +29,9 @@ public class User {
     private String lastName;
 
     @Column(name = "active")
-    private int active;
+    private int actives;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Role> roles;
+    private Set<AppRole> roles;
 
 }

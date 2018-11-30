@@ -1,6 +1,6 @@
 package com.guy.login.specification;
 
-import com.guy.login.domain.Task;
+import com.guy.login.domain.TaskUser;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-public class TaskSpecification implements Specification<Task> {
+public class TaskSpecification implements Specification<TaskUser> {
 
     private SearchCriteria criteria;
 
@@ -17,7 +17,7 @@ public class TaskSpecification implements Specification<Task> {
     }
 
     @Override
-    public Predicate toPredicate(Root<Task> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+    public Predicate toPredicate(Root<TaskUser> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         if (criteria.getOperation().equalsIgnoreCase(">")) {
             return criteriaBuilder.greaterThanOrEqualTo(
                     root.<String> get(criteria.getKey()), criteria.getValue().toString());
