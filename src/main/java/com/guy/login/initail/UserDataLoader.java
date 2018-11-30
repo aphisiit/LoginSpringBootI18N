@@ -1,9 +1,9 @@
 package com.guy.login.initail;
 
-import com.guy.login.domain.Role;
-import com.guy.login.domain.User;
-import com.guy.login.repository.RoleRepository;
-import com.guy.login.repository.UserRepository;
+import com.guy.login.domain.AppRole;
+import com.guy.login.domain.AppUser;
+import com.guy.login.repository.AppRoleRepository;
+import com.guy.login.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,37 +16,37 @@ import java.util.HashSet;
 public class UserDataLoader implements CommandLineRunner {
 
     @Autowired
-    RoleRepository roleRepository;
+    AppRoleRepository roleRepository;
 
     @Autowired
-    UserRepository userRepository;
+    AppUserRepository userRepository;
 
     @Autowired
     BCryptPasswordEncoder cryptPasswordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
-        Role roleAdmin = new Role();
+        AppRole roleAdmin = new AppRole();
         roleAdmin.setId(1);
         roleAdmin.setRole("ADMIN");
-        Role roleUser = new Role();
+        AppRole roleUser = new AppRole();
         roleUser.setId(2);
         roleUser.setRole("USER");
         roleRepository.save(roleAdmin);
         roleRepository.save(roleUser);
 
-        User userUser = new User();
+        AppUser userUser = new AppUser();
         userUser.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("USER"))));
-        userUser.setActive(1);
+        userUser.setActives(1);
         userUser.setPassword(cryptPasswordEncoder.encode("p@ssw0rd"));
         userUser.setEmail("user");
         userUser.setId(1);
         userUser.setName("Aphisit");
         userUser.setLastName("Namracha");
 
-        User userAdmin = new User();
+        AppUser userAdmin = new AppUser();
         userAdmin.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));
-        userAdmin.setActive(1);
+        userAdmin.setActives(1);
         userAdmin.setPassword(cryptPasswordEncoder.encode("p@ssw0rd"));
         userAdmin.setEmail("admin");
         userAdmin.setId(1);

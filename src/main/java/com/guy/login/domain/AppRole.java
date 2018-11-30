@@ -6,10 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Role {
+public class AppRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     private String role;

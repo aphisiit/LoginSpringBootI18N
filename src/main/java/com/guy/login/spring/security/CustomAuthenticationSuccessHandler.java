@@ -1,15 +1,13 @@
 package com.guy.login.spring.security;
 
-import com.guy.login.domain.User;
-import com.guy.login.repository.UserRepository;
+import com.guy.login.domain.AppUser;
+import com.guy.login.repository.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,7 +15,6 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.ServletException;
@@ -25,10 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler{
 
@@ -51,7 +45,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 //    CustomUserModel customUserModel;
 
     @Autowired
-    UserRepository userAuthorizationService;
+    AppUserRepository userAuthorizationService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -59,7 +53,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
             throws ServletException, IOException {
         String userName = authentication.getName();
 
-        User user = null;
+        AppUser user = null;
         LOGGER.info("User A : "+userName);
         try {
             user = userAuthorizationService.findByEmail(userName);

@@ -1,6 +1,6 @@
 package com.guy.login.repository;
 
-import com.guy.login.domain.Task;
+import com.guy.login.domain.TaskUser;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -20,23 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TaskRepository_Custom {
+public class TaskUserRepository_Custom {
 
     @PersistenceContext
     EntityManager entityManager;
 
-    private Logger LOGGER = LoggerFactory.getLogger(TaskRepository_Custom.class);
+    private Logger LOGGER = LoggerFactory.getLogger(TaskUserRepository_Custom.class);
 
-    public List<Task> findTaskByTitle(String title){
-        List<Task> taskList = new ArrayList<>();
+    public List<TaskUser> findTaskByTitle(String title){
+        List<TaskUser> taskList = new ArrayList<>();
         try {
 //            Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Task.class);
 
             // Create CriteriaBuilder
             CriteriaBuilder builder = entityManager.getCriteriaBuilder();
             // Create CriteriaQuery
-            CriteriaQuery<Task> criteriaQuery = builder.createQuery(Task.class);
-            Root<Task> taskRoot = criteriaQuery.from(Task.class);
+            CriteriaQuery<TaskUser> criteriaQuery = builder.createQuery(TaskUser.class);
+            Root<TaskUser> taskRoot = criteriaQuery.from(TaskUser.class);
             List<Predicate> predicateList = new ArrayList<>();
 
             if(!StringUtils.isEmpty(title)){
