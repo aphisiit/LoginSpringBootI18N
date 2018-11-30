@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.HashSet;
 
-@Component
+//@Component
 public class UserDataLoader implements CommandLineRunner {
 
     @Autowired
